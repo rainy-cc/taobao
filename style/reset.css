@@ -1,0 +1,15 @@
+/*css reset*/
+body,h1,h2,h3,h4,h5,p,dl,dd,ul,ol,form,input,textarea,th,td,select { margin:0; padding:0; }
+em { font-style:normal; }
+li { list-style:none; }
+a { text-decoration:none; }
+img { border:none; vertical-align:top; }
+table { border-collapse:collapse; }
+input,textarea { outline:none; border: none; }
+textarea { resize:none; overflow:auto; }
+body, button, input, select, textarea {
+    font: 12px tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+    background-color: #f1f1f1;
+}
+
+body a { color: #3C3C3C;}
