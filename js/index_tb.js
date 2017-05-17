@@ -129,7 +129,7 @@ function marketFn(){
     }
 
 
-    slideFn( 'slide1', 'slide_list','circle_nav1',3000 )
+   slideFn( 'slide1', 'slide_list','circle_nav1',3000 )
 //slideFn2()
     slideFn( 'slide2', 'slide_list','circle_nav2',2000,slideSpan );
     function slideFn(slideBoxName, slideUl, slideBtn, time,obj){
@@ -250,12 +250,7 @@ function marketFn(){
                 animated = false;
             });
         }
-
-
-
     }
-
-
     function slideFn1(){
         var slide = mainNav.getElementsByClassName('slide')[0];
         var slide1 = slide.getElementsByClassName('slide1')[0];
