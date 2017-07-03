@@ -15,12 +15,12 @@ xcTb.init = function(){
     guessLikeFn();//猜你喜欢部分
 
     marketFn();
-    
+
     qrCodeFn();
     headlineFn();
 
     myOftenFn();
-    
+
 };
 
 xcTb.init();  //页面初始化调用
@@ -127,6 +127,7 @@ function marketFn(){
 
         }
     }
+
 
 
     slideFn( 'slide1', 'slide_list','circle_nav1',3000 )
@@ -250,241 +251,8 @@ function marketFn(){
                 animated = false;
             });
         }
-
-
-
     }
 
-
-    function slideFn1(){
-        var slide = mainNav.getElementsByClassName('slide')[0];
-        var slide1 = slide.getElementsByClassName('slide1')[0];
-        var slideList = slide1.getElementsByClassName('slide_list')[0]
-        var circleButtons = slide1.getElementsByClassName('circle_nav1')[0].getElementsByTagName('li');//取得圆点
-        var slideListLi = slideList.getElementsByTagName('li')
-        var prev = slide1.getElementsByClassName('prev')[0];
-        var next = slide1.getElementsByClassName('next')[0];
-
-        var nowIndex = 0; //控制小圆点的索引
-        var num = 1;//为了实现无缝
-        var lens = slideListLi.length
-        var left = parseInt(slideList.style.left)
-        var slideTimer = null;
-        var animated = false;  //当前是否在运动中，解决连续多次点击的bug;
-
-        slideList.style.width = slideListLi[0].offsetWidth * lens + 'px'
-
-        //console.log(slideListLi[0].offsetWidth * slideListLi.length)
-        slide1.onmouseover = function(){
-            clearInterval( slideTimer );
-            prev.style.display = 'block';
-            next.style.display = 'block';
-
-        };
-        slide1.onmouseout = function(){
-
-            prev.style.display = 'none';
-            next.style.display = 'none';
-            slideTimer = setInterval(function(){
-                toNext();
-            }, 2000)
-
-
-        };
-
-        next.onclick = function(){
-            if( !animated ){
-                toNext();
-            }
-        };
-        prev.onclick = function(){
-            if( !animated ){
-                toPrev();
-            }
-        };
-        //圆点的切换
-        function showCircle(index){
-            for( var i = 0; i<circleButtons.length;i++){
-                circleButtons[i].className = '';
-            }
-            circleButtons[index].className = 'active'
-        }
-        //每个小圆点的点击切换
-        for(var i = 0; i<circleButtons.length;i++){
-            circleButtons[i].index = i;
-            circleButtons[i].onclick = function(){
-                nowIndex = this.index;  //同时小圆点的索引值也要对应;
-                num = this.index + 1;   //index 是从0开始的
-                for( var i = 0; i<circleButtons.length;i++){
-                    circleButtons[i].className = '';
-                }
-                this.className = 'active';
-                startMove(slideList, { left: -520 * (this.index + 1) }, 7, 30)
-            }
-        }
-        //自动播放
-        slideTimer = setInterval(function(){
-            toNext();
-        },2000);
-
-        function toNext(){
-            animated = true;
-            num++;
-            if(nowIndex === 4){
-                nowIndex = 0;
-            }else{
-                nowIndex++;
-            }
-            showCircle(nowIndex);
-            startMove( slideList, { left: -num * 520 }, 7, 30, function(){
-                if(num >= lens - 1 ){
-                    num = 1;
-                    slideList.style.left = '-520px';
-                }
-                animated = false;
-            })
-        }
-
-        function toPrev(){
-            animated = true;
-            num--;
-            if( nowIndex === 0){
-                nowIndex = 4;
-            }else{
-                nowIndex--;
-            }
-            showCircle(nowIndex);
-            startMove( slideList, { left: -num * 520 }, 7, 30, function(){
-                if(num <= 0 ){ //当图片走到第五张图片的副本时，就让副本图片变成真正的第五张所在位置;
-                    num = lens - 2 ;
-                    slideList.style.left = '-2600px';
-                }
-                animated = false;
-            });
-        }
-
-    }
-
-
-    function slideFn2(){
-        var slide = mainNav.getElementsByClassName('slide')[0];
-        var slideBox = slide.getElementsByClassName('slide2')[0];
-        var slideList = slideBox.getElementsByClassName('slide_list')[0]
-        var circleButtons = slideBox.getElementsByClassName('circle_nav2')[0].getElementsByTagName('li');//取得圆点
-        var slideListLi = slideList.getElementsByTagName('li')
-        var prev = slideBox.getElementsByClassName('prev')[0];
-        var next = slideBox.getElementsByClassName('next')[0];
-        var slideSpan = mainNav.getElementsByClassName('num')[0];
-
-        var nowIndex = 0; //控制小圆点的索引
-        var num = 1;//为了实现无缝
-        var lens = slideListLi.length;
-        //console.log(lens);
-        var left = parseInt(slideList.style.left);
-        var slideTimer = null;
-        var animated = false;  //当前是否在运动中，解决连续多次点击的bug;
-
-        slideList.style.width = slideListLi[0].offsetWidth * lens + 'px';
-
-        //console.log(slideListLi[0].offsetWidth * slideListLi.length)
-        slideBox.onmouseover = function(){
-            clearInterval( slideTimer )
-            prev.style.display = 'block';
-            next.style.display = 'block';
-
-        };
-
-
-        slideBox.onmouseout = function(){
-
-            prev.style.display = 'none';
-            next.style.display = 'none';
-            slideTimer = setInterval(function(){
-                toNext();
-            }, 2000)
-
-        };
-
-
-
-        next.onclick = function(){
-            if( !animated ){
-                toNext();
-            }
-        };
-        prev.onclick = function(){
-            if( !animated ){
-                toPrev();
-            }
-        };
-        //圆点的切换
-        function showCircle(index){
-            for( var i = 0; i<circleButtons.length;i++){
-                circleButtons[i].className = '';
-            }
-            circleButtons[index].className = 'active'
-        }
-        //每个小圆点的点击切换
-        for(var i = 0; i<circleButtons.length;i++){
-            circleButtons[i].index = i;
-            circleButtons[i].onclick = function(){
-                nowIndex = this.index;  //同时小圆点的索引值也要对应;
-                num = this.index + 1;   //index 是从0开始的
-                for( var i = 0; i<circleButtons.length;i++){
-                    circleButtons[i].className = '';
-                }
-                this.className = 'active';
-                startMove(slideList, { left: -520 * (this.index + 1) }, 7, 30)
-            }
-        }
-        //自动播放
-        slideTimer = setInterval(function(){
-            toNext();
-        },2000)
-
-        function toNext(){
-            animated = true;
-            num++;
-            if(nowIndex === circleButtons.length - 1){
-                nowIndex = 0;
-            }else{
-                nowIndex++;
-            }
-            slideSpan.innerHTML = nowIndex +1;
-            showCircle(nowIndex);
-            startMove( slideList, { left: -num * 520 }, 7, 30, function(){
-                if(num >= lens - 1 ){
-                    num = 1;
-                    slideList.style.left = '-520px';
-                }
-                animated = false;
-            })
-
-
-        };
-
-        function toPrev(){
-            animated = true;
-            num--;
-            if( nowIndex === 0){
-                nowIndex = circleButtons.length  - 1;
-            }else{
-                nowIndex--;
-            }
-            slideSpan.innerHTML = nowIndex+1;
-            showCircle(nowIndex);
-            startMove( slideList, { left: -num * 520 }, 7, 30, function(){
-                if(num <= 0 ){ //当图片走到第五张图片的副本时，就让副本图片变成真正的第五张所在位置;
-                    num = lens - 2 ;
-                    slideList.style.left = -num * 520 +'px';
-                };
-                animated = false;
-            });
-        }
-
-
-
-    }
 
     function lifeService(){
         var serviceList = mainNav.getElementsByClassName('service_list')[0];
@@ -758,7 +526,7 @@ function fixNavFn() {
         }else{
             oTop.style.display = "none";
         }
-
+        //右侧导航的固定
         if(scroll >= 464){
             oFixedNav.style.position = 'fixed';
             oFixedNav.style.top      = '28px';
@@ -766,7 +534,6 @@ function fixNavFn() {
             oFixedNav.style.position = 'absolute';
             oFixedNav.style.top      = '490px';
         }
-
 
         if( pause!==1 ){ //如果当前事件不是由定时器触发
             clearInterval( topTimer );
@@ -779,15 +546,11 @@ function fixNavFn() {
     }
 
     returnTop(); //返回顶部;
-    returnPos(oGuessLikeBtn, arrPos[5],arrActiveClass[6]);
+    returnPos(oGuessLikeBtn, arrPos[5],arrActiveClass[6]);//才你喜欢  单独的
     //点击运动到指定位置;
     for(var i = 0;i<arrPos.length;i++){
-
         returnPos(aFixedNavBtn[i], arrPos[i],arrActiveClass[i]);
-
     }
-
-
     //返回顶部;
     function returnTop(){
         oTop.onclick = function(){
@@ -859,7 +622,6 @@ function guessLikeFn(){
             startMove(similarMores[this.index], {opacity: 0},7,30);
         }
     }
-
 }
 //封装获取绝对位置的函数;
 function getPos(obj){
@@ -884,9 +646,6 @@ function addClass(obj, className) {
              obj.className = arrClassName.join(' ');*/
         }
     }
-
-
-
 }
 
 function removeClass(obj, className) {
