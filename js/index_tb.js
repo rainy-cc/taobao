@@ -8,15 +8,17 @@
 var xcTb = {};
 
 xcTb.init = function(){
+	
     fixSearchFn(); //固定的搜索框;
 
     fixNavFn(); //右侧固定导航交互
 
     guessLikeFn();//猜你喜欢部分
-
+	
     marketFn();
-
+	
     qrCodeFn();
+	
     headlineFn();
 
     myOftenFn();
@@ -86,7 +88,6 @@ function marketFn(){
     }
 
 
-
 //notice部分的js交互
     function notice(){
         var noticeTab = mainNav.getElementsByClassName('notice_tab')[0];
@@ -129,10 +130,7 @@ function marketFn(){
     }
 
 
-
-
-    slideFn( 'slide1', 'slide_list','circle_nav1',3000 )
-
+    slideFn( 'slide1', 'slide_list','circle_nav1',3000 );
     slideFn( 'slide2', 'slide_list','circle_nav2',2000,slideSpan );
     function slideFn(slideBoxName, slideUl, slideBtn, time,obj){
         var slide = mainNav.getElementsByClassName('slide')[0];
@@ -254,11 +252,6 @@ function marketFn(){
         }
     }
 
-
-
-
-    
-
     function lifeService(){
         var serviceList = mainNav.getElementsByClassName('service_list')[0];
 
@@ -304,11 +297,6 @@ function marketFn(){
             }
         }
     }
-
-
-
-
-
 }
 
 function qrCodeFn() {
@@ -663,7 +651,6 @@ function removeClass(obj, className) {
             obj.className = arrClassName.join(' ');
         }
     }
-
 }
 function arrIndexOf(arr, v) {
     for (var i=0; i<arr.length; i++) {
