@@ -130,8 +130,9 @@ function marketFn(){
 
 
 
+
     slideFn( 'slide1', 'slide_list','circle_nav1',3000 )
-//slideFn2()
+
     slideFn( 'slide2', 'slide_list','circle_nav2',2000,slideSpan );
     function slideFn(slideBoxName, slideUl, slideBtn, time,obj){
         var slide = mainNav.getElementsByClassName('slide')[0];
@@ -253,6 +254,10 @@ function marketFn(){
         }
     }
 
+
+
+
+    
 
     function lifeService(){
         var serviceList = mainNav.getElementsByClassName('service_list')[0];
